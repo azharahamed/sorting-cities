@@ -1,9 +1,6 @@
 package org.launchcode;
 
-import org.launchcode.comparators.AreaComparator;
-import org.launchcode.comparators.NameComparator;
-import org.launchcode.comparators.PopulationComparator;
-import org.launchcode.comparators.StateComparator;
+import org.launchcode.comparators.*;
 
 import java.util.ArrayList;
 
@@ -16,22 +13,31 @@ public class Main {
         // TODO - Use different comparators here
         NameComparator comparator = new NameComparator();
         cities.sort(comparator);
-        printCities(cities);
+//        printCities(cities);
 
         System.out.println("\nArea Comparator");
         AreaComparator comparatorArea = new AreaComparator();
         cities.sort(comparatorArea);
-        printCities(cities);
+//        printCities(cities);
 
         System.out.println("\nPopulation Comparator");
         PopulationComparator populationComparator = new PopulationComparator();
         cities.sort(populationComparator);
-        printCities(cities);
+//        printCities(cities);
 
         System.out.println("\nState Comparator");
         StateComparator stateComparator = new StateComparator();
         cities.sort(stateComparator);
         printCities(cities);
+
+        CompoundComparator compoundComparator = new CompoundComparator();
+        compoundComparator.add(stateComparator);
+        compoundComparator.add(comparator);
+        cities.sort(compoundComparator);
+        printCities(cities);
+
+
+
 
     }
 

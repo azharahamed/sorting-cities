@@ -12,7 +12,16 @@ public class CompoundComparator implements Comparator<City> {
 
     @Override
     public int compare(City o1, City o2) {
-        return o1.getName().compareTo(o2.getName());
+        int i = 0;
+        Comparator<City> a = comparators.get(i);
+        int result = 0;
+
+        while(i < comparators.size()){
+            result = a.compare(o1,o2);
+            if(result == 0) a = comparators.get(++i);
+            else return result;
+        }
+        return result;
     }
 
     public void add(Comparator<City> c){
